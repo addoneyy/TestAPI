@@ -8,7 +8,6 @@ class TestIndex:
     def test_index_list(self, get_token):
         """
             获取列表
-        :return:
         """
         url = "http://www.xxx/api/tasklist"
         header = {"token": get_token}
