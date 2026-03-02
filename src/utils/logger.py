@@ -47,4 +47,24 @@ class Logger:
 
 
 log_file = f'log/{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}-log.log'
-logger = Logger(log_file=log_file )
+logger = Logger(log_file=log_file)
+
+def log(func):
+    """
+        日志装饰器
+    """
+    def log_request(*args, **kwargs):
+        logger.info("开始测试接口,接口信息如下:")
+        for k, v in kwargs.items():
+            logger.info(f"{k}:{v}")
+        resp = func(*args, **kwargs)
+
+        logger.info(f"status_code: {resp.status_code}")
+        logger.info("响应头: ")
+        for k, v in resp.headers.items():
+            logger.info(f"  {k}: {v}")
+        logger.info(f"返回值:\n {resp.text}")
+
+        return resp
+
+    return log_request
