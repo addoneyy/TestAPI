@@ -2,8 +2,8 @@ login:
   -
     name: 正确账号密码登录成功
     variables:
-      phone: 18212341234
-      code: 123456
+      phone: "18212341234"
+      code: "123456"
     request:
       url: http://www.xxx/api/login
       method: post
@@ -14,11 +14,12 @@ login:
       - "eq": ["status_code", 200]
       - "eq": ["$.msg", "登录成功！"]
       - "eq": ["$.data.status", 1]
+      - "eq": ["select * from user where phone ='${phone}' and status = 1", 1]
   -
     name: 账号正确密码错误登录失败
     variables:
-      phone: 18212341234
-      code: 111222
+      phone: "18212341234"
+      code: "111222"
     request:
       url: http://www.xxx/api/login
       method: post

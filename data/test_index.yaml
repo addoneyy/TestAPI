@@ -1,0 +1,14 @@
+index:
+  -
+    name: 获取任务列表成功
+    request:
+      url: http://www.xxx/api/index/list
+      method: post
+      headers:
+        token: !get_token
+      json:
+        type: test
+    validate:
+      - "eq": ["status_code", 200]
+      - "eq": ["$.msg", "操作成功！"]
+

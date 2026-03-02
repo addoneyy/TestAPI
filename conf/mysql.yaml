@@ -1,0 +1,13 @@
+dev:
+  host: www.xxx.xxx
+  port: 11011
+  user: tb_user
+  password: 123456
+  db: taskDB
+
+product:
+  host: www.xxx.xxx
+  port: 11011
+  user: tb_user
+  password: 123456
+  db: taskDB
