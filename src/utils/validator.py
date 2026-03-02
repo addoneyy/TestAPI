@@ -1,5 +1,6 @@
 from jsonpath import jsonpath as jp
 import traceback
+from src.utils.mysql import MysqlClient
 
 class Validator:
 
@@ -30,6 +31,9 @@ class Validator:
                         assert getattr(Validator, k)(resp.status_code, v[1])
                     elif "$." in v[0]:
                         assert getattr(Validator, k)(jp(resp.json(), v[0])[0], v[1])
+                    elif v[0].startswith("select"):
+                        assert getattr(Validator, k)(MysqlClient() .query(v[0]), v[1])
+
         except:
             traceback.print_exc()
             return False
