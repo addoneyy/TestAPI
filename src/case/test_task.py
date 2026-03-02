@@ -59,9 +59,21 @@ class TestTask:
     def create_task(self, get_token):
         """
             创建任务业务流用例
+            创建任务有两种方式：1.调用接口 2.操作数据库
         """
         self.token = get_token
         assert self.__get_task_type()
         assert self.__upload_imgs()
         assert self.__submit_task()
         assert self.__pay_order()
+
+    def test_reveice_task(self, get_token, create_task):
+        """
+            测试接受任务成功
+        """
+        task_id = create_task
+        url = "http://127.0.0.1:xxxx/task/receive/task"
+        headers = {"token": get_token}
+        json = {"id": task_id}
+        resp = requests.request(method="post", url=url, json=json, headers=headers)
+        assert resp.status_code == 200
