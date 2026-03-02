@@ -1,4 +1,4 @@
-import requests
+from src.utils.requests import http_request
 from jsonpath import jsonpath as jp
 
 class TestTask:
@@ -10,7 +10,7 @@ class TestTask:
         """
         url = "http://127.0.0.1:xxxx/task/get/task"
         headers = {"token": token}
-        resp = requests.request("get", url=url, headers=headers)
+        resp = http_request.request("get", url=url, headers=headers)
         assert resp.status_code == 200
         assert len(jp(resp.json(), '$.data')[0]) == 2
 
@@ -23,7 +23,7 @@ class TestTask:
         url = "http://127.0.0.1:xxxx/task/upload/task"
         headers = {"token": token}
         image = [("file", ('IMG_5977.JPG', open(r"data/imgs/IMG_5977.JPG"), 'image/jpeg'))]
-        resp = requests.request("post", url=url, data=image, headers=headers)
+        resp = http_request.request("post", url=url, data=image, headers=headers)
         assert resp.status_code == 200
         image_name = jp(resp.json(),'$.data')[0]
 
@@ -37,7 +37,7 @@ class TestTask:
         headers = {"token": token}
         json = {"title": "测试任务", "content": "123123123", "type": 42, "imglist": [image_name],
                 "start_time": "2024-07-19 17:12"}
-        resp = requests.request("post", url=url, json=json, headers=headers)
+        resp = http_request.request("post", url=url, json=json, headers=headers)
         assert resp.status_code == 200
         assert jp(resp.json(), '$.msg')[0] == "操作成功！"
         psid = jp(resp.json(), '$..id')[0]
@@ -51,7 +51,7 @@ class TestTask:
         url = "http://127.0.0.1:xxxx/task/pay/task"
         json = {"id": psid, "payps": payps}
         headers = {"token": token}
-        resp = requests.request("post", url=url, json=json, headers=headers)
+        resp = http_request.request("post", url=url, json=json, headers=headers)
         assert resp.status_code == 200
 
         return True
@@ -75,5 +75,5 @@ class TestTask:
         url = "http://127.0.0.1:xxxx/task/receive/task"
         headers = {"token": get_token}
         json = {"id": task_id}
-        resp = requests.request(method="post", url=url, json=json, headers=headers)
+        resp = http_request.request(method="post", url=url, json=json, headers=headers)
         assert resp.status_code == 200
