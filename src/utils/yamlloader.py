@@ -38,16 +38,18 @@ class YamlLoader:
 
         for k, v in datas.items():
             datas_copy[k] = []
-            for case in v:
-                case_copy = str(deepcopy(case))
-                if case.get("variables"):
-                    for k1 ,v1 in case["variables"].items():
-                        find_result = re.findall("\${"+k1+"}", case_copy)
-                        for res in find_result:
-                            case_copy = case_copy.replace(res,v1)
+            if isinstance(v, list):
+                for case in v:
+                    case_copy = str(deepcopy(case))
+                    if isinstance(case, dict) and case.get("variables"):
+                        for k1 ,v1 in case["variables"].items():
+                            find_result = re.findall("\${"+k1+"}", case_copy)
+                            for res in find_result:
+                                case_copy = case_copy.replace(res,v1)
 
-                datas_copy[k].append(eval(case_copy))
-
+                    datas_copy[k].append(eval(case_copy))
+            else:
+                datas_copy[k] = deepcopy(v)
         return  datas_copy
 
 

@@ -7,7 +7,7 @@ def get_user_token(loader=None, node=None):
     """
         获取token的pyyaml自定义标签
     """
-    INIT_DATA = YamlLoader().load(r"data/test_login.yaml")["login"]["variables"]
+    INIT_DATA = YamlLoader().load(r"data/init_data.yaml")["get_user_token"]
     url = "http://www.xxx/api/login"
     resp = http_request.request(url=url, method="post", json=INIT_DATA)
     assert resp.status_code == 200

@@ -1,0 +1,7 @@
+get_token:
+  phone: "18212341234"
+  code: "123456"
+
+get_user_token:
+  phone: "18212341234"
+  code: "123123"
