@@ -1,5 +1,6 @@
+import sys
 from loguru import logger as logutil
-from datetime import datetime
+
 
 class Logger:
 
@@ -46,7 +47,7 @@ class Logger:
         self.logger.warning(message, *args, **kwargs)
 
 
-log_file = f'log/{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}-log.log'
+log_file = f'log/{sys.path[-1]}-log.log'
 logger = Logger(log_file=log_file)
 
 def log(func):
