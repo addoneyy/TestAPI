@@ -1,0 +1,7 @@
+# pip install -r requirements.txt
+requests==2.32.5
+pytest==8.4.2
+PyMySQL==1.1.2
+PyYAML==6.0.3
+loguru==0.7.3
+jsonpath==0.82.2
