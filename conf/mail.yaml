@@ -1,0 +1,13 @@
+sender:
+  host: smtp.qq.com
+  user: 123456789@qq.com
+  password: 123456
+
+receiver:
+  123456789@qq.com: jinitaimei
+
+cc:
+  - 123456789@qq.com
+
+active: False
+

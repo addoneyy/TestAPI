@@ -24,7 +24,7 @@ class YamlLoader:
         try:
             with open(file=path, mode='r', encoding="utf-8") as f:
                 result = yaml.load(stream=f.read(), Loader= yaml.FullLoader)
-                result = self.__replace_vars(result)
+                result =result if r"conf" in path and r"data" not in path else self.__replace_vars(result)
                 return result
         except:
             traceback.print_exc()
