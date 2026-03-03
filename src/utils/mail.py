@@ -1,5 +1,6 @@
 import yagmail
 import traceback
+from src.utils.logger import logger
 
 class Mail:
 
@@ -14,12 +15,15 @@ class Mail:
             发送邮件
         """
         if self.mail_conf["active"]:
+            logger.info("开始发送邮件！")
             try:
                 yag_mail = yagmail.SMTP(**self.mail_conf["sender"])
                 yag_mail.send(to=self.mail_conf["receiver"], subject=subject, contents=content, attachments=attachments)
+                logger.success("邮件发送成功！")
                 return True
             except:
+                logger.error(f"邮件发送失败!\n{traceback.format_exc()}")
                 traceback.print_exc()
                 return False
         else:
-            print("未启用邮件！")
+            logger.warning("未启用邮件!")
