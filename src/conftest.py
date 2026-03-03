@@ -12,6 +12,7 @@ import time
 from src.utils.tagfunc import get_user_token
 from src.utils.mysql import MysqlClient
 from src.utils.report import Report
+from src.utils.dingtalk import DingTalk
 
 
 
@@ -75,4 +76,5 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     content = content + f"\n测试跳过用例：\n    {len(skipped)}个用例跳过\n"
     content = content + f"\n测试失败用例：\n    {len(failed)}个用例执行失败\n"
     Mail().send_mail(subject, content)
+    DingTalk().send_message(msg= content)
 
