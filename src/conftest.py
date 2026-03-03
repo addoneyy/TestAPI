@@ -6,6 +6,7 @@ import pytest
 import time
 from src.utils.tagfunc import get_user_token
 from src.utils.mysql import MysqlClient
+from src.utils.report import Report
 
 
 @pytest.fixture(scope='function')
@@ -48,3 +49,9 @@ def create_task():
     sql = "select max(id) as id from tb_tasks where xxx"
     res = MysqlClient().query(sql)
     yield res[0][0]
+
+def pytest_terminal_summary(terminalreporter, exitstatus, config):
+    """
+        获取所有的测试用例结果
+    """
+    passed, failed, skipped = Report().get_report_summary(terminalreporter)
