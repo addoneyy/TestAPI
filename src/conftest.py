@@ -13,6 +13,7 @@ from src.utils.tagfunc import get_user_token
 from src.utils.mysql import MysqlClient
 from src.utils.report import Report
 from src.utils.dingtalk import DingTalk
+from src.utils.result import record_result
 
 
 
@@ -75,6 +76,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     content = f"测试结果如下:\n测试通过用例：\n    {len(passed)}个用例通过\n"
     content = content + f"\n测试跳过用例：\n    {len(skipped)}个用例跳过\n"
     content = content + f"\n测试失败用例：\n    {len(failed)}个用例执行失败\n"
+    record_result(passed, failed, skipped)
     Mail().send_mail(subject, content)
     DingTalk().send_message(msg= content)
 

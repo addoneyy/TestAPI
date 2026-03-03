@@ -6,3 +6,5 @@ PyYAML==6.0.3
 loguru==0.7.3
 jsonpath==0.82.2
 yagmail==0.15.293
+allure-pytest==2.15.3
+python-jenkins==1.8.3

@@ -1,0 +1,19 @@
+# brew install jenkins 安装jenkins
+# brew services start jenkins 开启jenkins
+# brew services stop jenkins 停止jenkins
+# brew services restart jenkins 重启jenkins
+# http://localhost:8080 or 127.0.0.1:8080 打开jenkins
+# cd /Users/Shared/Jenkins/Home/secrets 切换至root路径
+# cat initialAdminPassword 查看密码
+# use custom workspace 上传服务器地址
+# Build Triggers 每日定时运行
+# * * * * * 分钟(0-60) 小时(0-24) 每个月的第几天(1-31) 今年第几个月(1-12) 这周第几天(0-7)
+# Build step--call pytest exit()
+
+# jenkins集成allure测试报告
+# allure plugins 安装allure插件
+# Global Tool Configuration--AllureCommandline 添加全局工具
+# Project--Configure--Post-build Actions--Path--allure-results
+
+# pip install python-jenkins 安装jenkins
+# user--Configure--API Token--Add new Token--Generate
