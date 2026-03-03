@@ -1,0 +1,4 @@
+# pytest --alluredir=allure_result 把测试报告结果保存到allure_result下
+# allure generate result -o report --clean 生成测试报告并清除原有结果
+# allure open report 在浏览器打开测试报告
+# allure serve result 自动打开测试报告
